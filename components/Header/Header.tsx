@@ -1,10 +1,11 @@
 import { FC } from "react";
-import { Divider, GridItem } from "@chakra-ui/react";
+import { Divider, Flex, Spacer } from "@chakra-ui/react";
 import { FaBitcoin } from "react-icons/fa";
-import { RiPercentFill } from "react-icons/ri";
 import { MdLocalGroceryStore } from "react-icons/md";
-import { useGlobalStatistic } from "hooks/fetchers";
+import { FaDollarSign } from "react-icons/fa";
 import { GlobalStatistic } from "./GlobalStatistic";
+import { HeaderLogo } from "./HeaderLogo";
+import { useGlobalStatistic } from "hooks/fetchers";
 import { HeaderProps } from "./types";
 
 export const Header: FC<HeaderProps> = ({ initialData }): JSX.Element => {
@@ -19,7 +20,9 @@ export const Header: FC<HeaderProps> = ({ initialData }): JSX.Element => {
 
   return (
     <>
-      <GridItem colSpan={2}>
+      <Flex alignItems="center">
+        <HeaderLogo />
+        <Spacer />
         <GlobalStatistic
           isValidating={isValidating}
           text="Cryptos"
@@ -28,8 +31,7 @@ export const Header: FC<HeaderProps> = ({ initialData }): JSX.Element => {
           label="Total amount of cryptocurrencies"
           iconColor="orange.500"
         />
-      </GridItem>
-      <GridItem colSpan={2}>
+
         <GlobalStatistic
           isValidating={isValidating}
           text="Markets"
@@ -38,21 +40,18 @@ export const Header: FC<HeaderProps> = ({ initialData }): JSX.Element => {
           label="Total amount of markets"
           iconColor="purple.500"
         />
-      </GridItem>
-      <GridItem colSpan={2}>
+
         <GlobalStatistic
           isValidating={isValidating}
           text="24h Change"
           data={market_cap_change_percentage_24h_usd}
-          icon={RiPercentFill}
+          icon={FaDollarSign}
           label="Market cap change percentage in USD"
           iconColor="teal.500"
           fixed
         />
-      </GridItem>
-      <GridItem colSpan={12}>
-        <Divider />
-      </GridItem>
+      </Flex>
+      <Divider />
     </>
   );
 };

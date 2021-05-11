@@ -8,7 +8,7 @@ export const InfoNumbers: FC<InfoNumbersProps> = ({
   fixed,
 }): JSX.Element => {
   if (isValidating) {
-    return <Skeleton height="16px" width="30px" />;
+    return <Skeleton height="24px" width="30px" />;
   }
 
   return <Text>{`${fixed ? data.toFixed(2) : data}`}</Text>;
